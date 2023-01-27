@@ -11,14 +11,6 @@ const ProductBox = (props) => {
   };
 
   useEffect(() => {
-    // setCartData(
-    //   cartData.map((item) =>
-    //     item.id === props.info.id ? { ...item, quantity: count } : item
-    //   )
-    // );
-    // if (count === 0) {
-    //   setCartData(cartData.filter((item) => item.id !== props.info.id));
-    // }
     setCartData(
       count > 0 && cartData.find((item) => item.id === props.info.id)
         ? cartData.map((item) =>
@@ -33,11 +25,13 @@ const ProductBox = (props) => {
     if (itemInCart) {
       setCount(itemInCart.quantity);
     }
-  }, [cartData, props.info.id]);
+  }, [cartData]);
 
   const addProduct = (task) => {
     task === "add"
-      ? count < props.info.quantity && setCount((prevCount) => prevCount + 1)
+      ? count === props.info.quantity
+        ? window.alert("Maximum quantity limit reached")
+        : count < props.info.quantity && setCount((prevCount) => prevCount + 1)
       : count > 1
       ? setCount((prevCount) => prevCount - 1)
       : count === 1 && setCount((prevCount) => prevCount - 1);

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 
 const Sidebar = () => {
-  const { Data, setData, tempData, setTempData } = useContext(UserContext);
+  const { setData, tempData } = useContext(UserContext);
 
   const filterData = {
     Color: [
@@ -62,8 +62,9 @@ const Sidebar = () => {
         }
       }
     }
-    console.log(selectedItems, selectedFilter, "hello");
+    // console.log(selectedItems, selectedFilter, "hello");
     setData(selectedItems);
+    // console.log(Data);
   }, [selectedFilter]);
 
   const handleChange = (event) => {
@@ -74,7 +75,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="gap-2 shadow-lg rounded-sm p-4 pl-8 hidden sm:block h-fit mt-20 w-[18rem] sticky left-22 top-44">
+    <div className="gap-2 shadow-lg rounded-sm p-4 pl-8 hidden sm:block h-fit mt-20 w-[20rem] sticky top-44">
       {Object.entries(filterData).map((data, i) => {
         return (
           <div className="py-1" key={i}>

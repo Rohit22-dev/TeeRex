@@ -20,6 +20,10 @@ const App = () => {
         setTempData(item);
         setData(item);
       });
+
+    if (window.location.pathname !== "/") {
+      window.location.pathname = "/";
+    }
   }, []);
 
   return (
@@ -40,7 +44,7 @@ const App = () => {
           <Route
             path="/"
             element={
-              <div className="p-10 flex gap-10 w-full">
+              <div className="p-10 flex gap-20 w-full">
                 <Sidebar />
                 <Product />
               </div>
