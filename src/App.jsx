@@ -1,11 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Cart from "./components/Cart";
-import Home from "./components/Home";
-import Navbar from "./components/navbar";
 import Product from "./components/Product";
 import Sidebar from "./components/Sidebar";
 import "./app.css";
+import Navbar from "./components/navbar";
 
 const UserContext = createContext();
 const App = () => {
@@ -22,7 +21,6 @@ const App = () => {
         setData(item);
       });
   }, []);
-  // console.log(tempData, Data);
 
   return (
     <UserContext.Provider
