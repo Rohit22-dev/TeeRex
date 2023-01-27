@@ -4,7 +4,7 @@ import Cart from "./components/Cart";
 import Product from "./components/Product";
 import Sidebar from "./components/Sidebar";
 import "./app.css";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 
 const UserContext = createContext();
 const App = () => {
