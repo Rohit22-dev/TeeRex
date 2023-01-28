@@ -12,9 +12,9 @@ const Product = () => {
   return (
     <div className="flex-row w-full scrollbar-hide">
       <div className="flex justify-center m-3 gap-2 py-2">
-        <div className="border-b-2 border-black w-screen sm:w-fit">
+        <div className="border-b-2 border-black w-full sm:w-fit">
           <input
-            className="placeholder-slate-500  min-w-full w-[20rem] placeholder:font-semibold focus:outline-none"
+            className="placeholder-slate-500 md:w-[20rem] w-full placeholder:font-semibold focus:outline-none"
             placeholder="Search for products..."
           />
         </div>
@@ -28,7 +28,13 @@ const Product = () => {
           className="place-items-center bg-black rounded-md px-3 p-1 cursor-pointer block sm:hidden"
           onClick={handleSearch}
         >
-          <FilterAltOutlinedIcon className="text-white" />
+          <FilterAltOutlinedIcon
+            className="text-white"
+            onClick={() => {
+              setToggleButton(true);
+              console.log("clicked");
+            }}
+          />
         </div>
       </div>
       <div className="flex-wrap flex gap-10 p-3 ">
