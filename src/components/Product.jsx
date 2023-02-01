@@ -5,9 +5,21 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import { UserContext } from "../App";
 
 const Product = () => {
-  const { Data } = useContext(UserContext);
+  const { Data, tempData, setData, setToggleButton } = useContext(UserContext);
+  const [searchInput, setSearchInput] = useState("");
 
-  const handleSearch = () => {};
+  const handleSearch = (event) => {
+    setSearchInput(event.target.value);
+    const searchData = tempData.filter((item) => {
+      return (
+        item.name?.toLowerCase().includes(searchInput.toLowerCase()) ||
+        item.color?.toLowerCase().includes(searchInput.toLowerCase()) ||
+        item.type?.toLowerCase().includes(searchInput.toLowerCase()) ||
+        item.gender?.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    });
+    setData(searchData);
+  };
 
   return (
     <div className="flex-row w-full scrollbar-hide">
@@ -16,11 +28,13 @@ const Product = () => {
           <input
             className="placeholder-slate-500 md:w-[20rem] w-full placeholder:font-semibold focus:outline-none"
             placeholder="Search for products..."
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={searchInput}
           />
         </div>
         <div
           className="place-items-center sm:bg-[#979392] bg-black  rounded-md px-3 p-1 cursor-pointer "
-          onClick={handleSearch}
+          onClick={() => handleSearch({ target: { value: searchInput } })}
         >
           <SearchOutlinedIcon className="text-white" />
         </div>

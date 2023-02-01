@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 const Sidebar = () => {
-  const { setData, tempData } = useContext(UserContext);
-  const [toggleButton, setToggleButton] = useState(true);
+  const { setData, tempData, toggleButton, setToggleButton } =
+    useContext(UserContext);
 
   const filterData = {
     Color: [
@@ -63,9 +64,7 @@ const Sidebar = () => {
         }
       }
     }
-    // console.log(selectedItems, selectedFilter, "hello");
     setData(selectedItems);
-    // console.log(Data);
   }, [selectedFilter]);
 
   const handleChange = (event) => {
@@ -78,12 +77,39 @@ const Sidebar = () => {
   return (
     <>
       {toggleButton && (
-        <ul className="z-10 fixed top-0 -right-2 p-5 w-[70vw] h-screen shadow-2xl md:hidden list-none flex flex-col justify-start items-end rounded-md blue-glassmorphism border-none text-white animate-slide-in ">
-          <li onClick={() => setToggleButton(false)}>a</li>
-          <li>b</li>
-          <li>c</li>
-          <li>d</li>
-        </ul>
+        <div className="z-10 fixed top-0 -right-2 p-5 w-1/2 h-screen shadow-2xl md:hidden list-none flex flex-col justify-start items-end rounded-md blue-glassmorphism border-none text-white animate-slide-in ">
+          <div
+            onClick={() => setToggleButton(false)}
+            className="text-xl w-full my-2"
+          >
+            <CloseRoundedIcon className="cursor-pointer" />
+          </div>
+          <div className="self-center">
+            {Object.entries(filterData).map((data, i) => {
+              return (
+                <div className="py-1" key={i}>
+                  <h1 className="font-bold text-black">{data[0]}</h1>
+                  {data[1].map((option, index) => {
+                    return (
+                      <div key={index}>
+                        <input
+                          type="checkbox"
+                          name={data[0]}
+                          value={option}
+                          checked={selectedFilter[data[0]] === option}
+                          onChange={handleChange}
+                        />
+                        <label className="font-semibold text-sm ml-2">
+                          {option}
+                        </label>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       )}
       <div className="gap-2 shadow-lg rounded-sm p-4 pl-8 hidden sm:block h-fit mt-20 w-[20rem] sticky top-44">
         {Object.entries(filterData).map((data, i) => {
@@ -115,3 +141,42 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+{
+  /* <div>
+  {toggleButton && (
+        <div className="z-10 fixed top-0 -right-2 p-5 w-[70vw] h-screen shadow-2xl md:hidden list-none flex flex-col justify-start items-end rounded-md blue-glassmorphism border-none text-white animate-slide-in ">
+          <div
+            onClick={() => setToggleButton(false)}
+            className="text-xl w-full my-2"
+          >
+            <CloseRoundedIcon className="cursor-pointer" />
+          </div>
+        </div>
+      )}
+  <div className={toggleButton?"self-center":"gap-2 shadow-lg rounded-sm p-4 pl-8 hidden sm:block h-fit mt-20 w-[20rem] sticky top-44"}>
+        {Object.entries(filterData).map((data, i) => {
+          return (
+            <div className="py-1" key={i}>
+              <h1 className="font-bold text-black">{data[0]}</h1>
+              {data[1].map((option, index) => {
+                return (
+                  <div key={index}>
+                    <input
+                      type="checkbox"
+                      name={data[0]}
+                      value={option}
+                      checked={selectedFilter[data[0]] === option}
+                      onChange={handleChange}
+                    />
+                    <label className="font-semibold text-sm ml-2">
+                      {option}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+</div>*/
+}

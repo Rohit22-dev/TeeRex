@@ -11,6 +11,7 @@ const App = () => {
   const [Data, setData] = useState([]);
   const [tempData, setTempData] = useState([]);
   const [cartData, setCartData] = useState([]);
+  const [toggleButton, setToggleButton] = useState(false);
   useEffect(() => {
     fetch(
       "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json"
@@ -19,6 +20,9 @@ const App = () => {
       .then((item) => {
         setTempData(item);
         setData(item);
+      })
+      .catch((error) => {
+        window.alert("There was an error.", error.message);
       });
 
     if (window.location.pathname !== "/") {
@@ -35,6 +39,8 @@ const App = () => {
         setCartData,
         tempData,
         setTempData,
+        toggleButton,
+        setToggleButton,
       }}
     >
       {/* flex-1 flex-row */}
