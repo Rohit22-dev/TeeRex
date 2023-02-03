@@ -12,10 +12,10 @@ const Product = () => {
     setSearchInput(event.target.value);
     const searchData = tempData.filter((item) => {
       return (
-        item.name?.toLowerCase().includes(searchInput.toLowerCase()) ||
-        item.color?.toLowerCase().includes(searchInput.toLowerCase()) ||
-        item.type?.toLowerCase().includes(searchInput.toLowerCase()) ||
-        item.gender?.toLowerCase().includes(searchInput.toLowerCase())
+        (item.name || "").toLowerCase().includes(searchInput.toLowerCase()) ||
+        (item.color || "").toLowerCase().includes(searchInput.toLowerCase()) ||
+        (item.type || "").toLowerCase().includes(searchInput.toLowerCase()) ||
+        (item.gender || "").toLowerCase().includes(searchInput.toLowerCase())
       );
     });
     setData(searchData);
@@ -28,8 +28,8 @@ const Product = () => {
           <input
             className="placeholder-slate-500 md:w-[20rem] w-full placeholder:font-semibold focus:outline-none"
             placeholder="Search for products..."
-            onChange={(e) => setSearchInput(e.target.value)}
             value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
           />
         </div>
         <div
@@ -46,7 +46,6 @@ const Product = () => {
             className="text-white"
             onClick={() => {
               setToggleButton(true);
-              console.log("clicked");
             }}
           />
         </div>

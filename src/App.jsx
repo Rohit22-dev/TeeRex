@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
 import Sidebar from "./components/Sidebar";
@@ -43,22 +43,22 @@ const App = () => {
         setToggleButton,
       }}
     >
-      {/* flex-1 flex-row */}
-      <div className="relative">
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="p-10 flex gap-20 w-full">
-                <Sidebar />
-                <Product />
-              </div>
-            }
-          />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-      </div>
+        {/* flex-1 flex-row */}
+        <div className="relative">
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <div className="p-10 flex gap-20 w-full">
+                  <Sidebar />
+                  <Product />
+                </div>
+              }
+            />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
     </UserContext.Provider>
   );
 };

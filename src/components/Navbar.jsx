@@ -4,7 +4,7 @@ import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const { cartData } = useContext(UserContext);
+  const { cartData } = useContext(UserContext) || { cartData: [] };
   const [sumOfQuantity, setSumOfQuantity] = useState(0);
 
   const navigate = useNavigate();
